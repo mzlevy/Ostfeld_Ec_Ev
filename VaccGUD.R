@@ -13,6 +13,7 @@ rm(list=ls())
 getwd()
 
 # Reset to desired working directory
+setwd("~/Vaccine")          #for Mike
 setwd("c:/Users/Felicia Keesing/Documents/Data & Figures/Vaccination")
 
 # Find where R is currently working
