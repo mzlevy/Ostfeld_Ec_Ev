@@ -124,8 +124,8 @@ gU <- subset(r2,Cover=="U") # subset unshaded trays
 gPaired <- merge(gS, gU, by=c("Grid", "Trap", "Site", "Treatment", "Date"))
 gPaired[,6:7] <- NULL # remove categorical coding as "S" for shaded
 gPaired[,8:9] <- NULL # remove categorical coding as "U" for uncovered
-colnames(gPaired)[7] <- c("SeedRemS")
-colnames(gPaired)[9] <- c("SeedRemU")
+colnames(gPaired)[9] <- c("SeedRemS")
+colnames(gPaired)[13] <- c("SeedRemU")
 # Calculate how much more there was in uncovered tray
 gPaired$SeedDiff <- gPaired$SeedRemU - gPaired$SeedRemS 
 # Set the Dist variable, which notes whether either of the pairs was disturbed on a particular night. 
