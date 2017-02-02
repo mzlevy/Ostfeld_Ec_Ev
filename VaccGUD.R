@@ -144,7 +144,9 @@ colnames(g3)[1:4] <- c("Grid", "Site", "Treatment", "SeedDiff")
 
 
 
-
+#overlapping histogram
+hist(gPaired2$SeedDiff[gPaired2$Treatment=="C"],breaks=30, col=rgb(0.8,0.8,0.8,0.5), Xlab="SeedDiff",main="SeedDiff")
+hist(gPaired2$SeedDiff[gPaired2$Treatment=="X"],breaks=30, add=T, col=rgb(0.1,0.1,0.1,0.5))
 
 
 # GRAPH MEAN OF DIFFERENCE BETWEEN SHADED AND UNSHADED, ACROSS ALL GRIDS
