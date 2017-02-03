@@ -19,6 +19,8 @@ rm(list=ls())
 getwd()
 
 # Reset to desired working directory
+setwd("~/Vaccine/gypsy moth data files")
+
 setwd("c:/Users/Felicia Keesing/Documents/Data & Figures/Vaccination")
 
 # Find where R is currently working
