@@ -142,7 +142,10 @@ colnames(g3)[1:4] <- c("Grid", "Site", "Treatment", "SeedDiff")
 
 # STATISTICAL ANALYSIS HERE
 
+kruskal.test(SeedDiff~Treatment, data=gPaired2)
 
+GLM1<-glm(SeedDiff~Treatment, data=gPaired2)
+summary(GLM1)
 
 #overlapping histogram
 hist(gPaired2$SeedDiff[gPaired2$Treatment=="C"],breaks=30, col=rgb(0.8,0.8,0.8,0.5), Xlab="SeedDiff",main="SeedDiff")
