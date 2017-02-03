@@ -314,8 +314,7 @@ colnames(gd4Paired)[6] <- c("TotalDistU")
 gd4Paired$TotalDist <- gd4Paired$TotalDistS + gd4Paired$TotalDistU 
 head(gd4Paired)
 
-
-# GRAPH MEAN # DISTURBED TRAY-NIGHTS FOR EACH TRAY PAIR, BY GRID, 
+# GRAPH MEAN # DISTURBED TRAY-NIGHTS FOR EACH TRAY PAIR, BY GRID,
 mean.Man <- tapply(gd4Paired$TotalDist, list(gd4Paired$Treatment, gd4Paired$Site), mean)
 # Calculate standard deviation of each group using tapply
 # which returns a matrix--it will be the same dimension as mean.burde 
@@ -361,5 +360,27 @@ arrows(mids, mean.Man - se.Man, mids, mean.Man+se.Man, code = 3, angle = 90, len
 text(mids, .3, paste ("n = ", n.Man), cex=.7, col="white")
 
 
+#============================================================================
+#      non parameteric test of disturbance by treatment
+#           -Total disturbances ~ Treatment
+#           -Difference between shaded and unshaded disturbances by treatment
+#============================================================================
+
+kruskal.test(TotalDist~Treatment, data=gd4Paired)
+
+TotalDist_S_minus_u<-gd4Paired$TotalDistS-gd4Paired$TotalDistU
+
+kruskal.test(TotalDist_S_minus_u~gd4Paired$Treatment)
+
+#============================================================================
+#      GLMs
+#       -Poisson model of counts of total disturbances by treatment
+#       -same with fixed effect for Site
+#============================================================================
+
+GLM3<- glm(TotalDistS~Treatment, data=gd4Paired, family = "poisson")
+summary(GLM3)
+GLM4<- glm(TotalDistS~Treatment + Site, data=gd4Paired, family = "poisson")
+summary(GLM4)
 
 
