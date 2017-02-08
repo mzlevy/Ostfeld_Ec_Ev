@@ -15,6 +15,14 @@
 # Reset R's brain
 rm(list=ls())
 
+#Package for Mixed Effects model
+install.packages("lme4")
+library("lme4")
+
+#for negative binomial regression
+library("MASS")
+
+
 # Find where R is currently working
 getwd()
 
@@ -112,12 +120,29 @@ text(p.dens$MNA, p.dens$PropEaten-.05,labels=p.dens$Site)
 # Need to incorporate density of mice on plots as covariate
 # Need to incorporate paired design of grids 
 
+#paired t-test
+t.test(c(17,30,47), c(14,16,33), paired=TRUE)
+
+GLM1<-glm(NumRemaining~ Treatment, poisson(link = "log"), data=p.grid)
+#fixed effect on Location
+GLM2<-glm(NumRemaining~ Treatment + Location, poisson(link = "log"), data=p.grid)
+GLM3<-glm(NumRemaining~ Treatment.x + Location.x + MNA, poisson(link = "log"), data=p.dens)
+#overdispersed
+GLM3b<-glm(NumRemaining~ Treatment.x + Location.x + MNA, quasipoisson(link = "log"), data=p.dens)
+GLM3c<-glm.nb(NumRemaining~ Treatment.x + Location.x + MNA, data=p.dens)
 
 
 
+GLM4<-glm(NumRemaining~ Treatment.x  + MNA, poisson(link = "log"),  data=p.dens)
+
+#Gaussian data
+GLM5<-glm(NumRemaining~ Treatment.x + Location.x + MNA, data=p.dens)
+
+ANOVA1<-anova(lm(NumRemaining ~ MNA+ Treatment.x + Location.x, data=p.dens))
 
 
-
+#random effect on Location
+GLMER1<-glmer(NumRemaining~ Treatment.x  + MNA +(1|Location.x), poisson(link = "log"),  data=p.dens)
 
 
 
