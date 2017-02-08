@@ -127,9 +127,20 @@ GLM1<-glm(NumRemaining~ Treatment, poisson(link = "log"), data=p.grid)
 #fixed effect on Location
 GLM2<-glm(NumRemaining~ Treatment + Location, poisson(link = "log"), data=p.grid)
 GLM3<-glm(NumRemaining~ Treatment.x + Location.x + MNA, poisson(link = "log"), data=p.dens)
+
+#offset
+p.dens$offset<-1:6*0+log(81)
+GLM3o<-glm(NumRemaining~ Treatment.x + Location.x + MNA, poisson(link = "log"), offset(offset), data=p.dens)
+GLM3o2<-glm(NumRemaining/log(81)~ Treatment.x + Location.x + MNA, poisson(link = "log"),data=p.dens)
+GLM3o3<-glm(NumRemaining/81~ Treatment.x + Location.x + MNA, poisson(link = "log"),data=p.dens)
+
+
+
 #overdispersed
 GLM3b<-glm(NumRemaining~ Treatment.x + Location.x + MNA, quasipoisson(link = "log"), data=p.dens)
-GLM3c<-glm.nb(NumRemaining~ Treatment.x + Location.x + MNA, data=p.dens)
+
+
+GLM3nb<-glm.nb(NumRemaining~ Treatment.x + Location.x + MNA, data=p.dens)
 
 
 
@@ -139,6 +150,10 @@ GLM4<-glm(NumRemaining~ Treatment.x  + MNA, poisson(link = "log"),  data=p.dens)
 GLM5<-glm(NumRemaining~ Treatment.x + Location.x + MNA, data=p.dens)
 
 ANOVA1<-anova(lm(NumRemaining ~ MNA+ Treatment.x + Location.x, data=p.dens))
+
+
+#logit
+GLM6<-glm(PropEaten ~ Treatment.x + Location.x + MNA, family=binomial, data=p.dens)
 
 
 #random effect on Location
