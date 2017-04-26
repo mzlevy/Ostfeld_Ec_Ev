@@ -120,6 +120,9 @@ text(p.dens$MNA, p.dens$PropEaten-.05,labels=p.dens$Site)
 # Need to incorporate density of mice on plots as covariate
 # Need to incorporate paired design of grids 
 
+glm(PropEaten ~ MNA + )
+
+#number remaining
 #paired t-test
 t.test(c(17,30,47), c(14,16,33), paired=TRUE)
 
