@@ -1,0 +1,14 @@
+Label,Meaning
+tag,Mouse Tag number
+site,Field Site
+vac_type,Vaccine Type
+num_ticks_pos_c,number of ticks infected using OspC locus
+num_ticks_pos_igs,number of ticks infected using IGS locus
+overall_num_pos,"Overall number of ticks infected. If a tick was found to be positive for one locus but not the other locus, the tick was determined to be infected."
+num_ticks_proc_c,number of ticks processed using the OspC locus
+num_ticks_proc_igs,number of ticks processed using the IGS locus
+overall_num_ticks_proc,Total number of ticks processed
+perc_ticks_inf_c,percentage of ticks positive per mouse individual using the OspC locus
+perc_ticks_inf_igs,percentage of ticks positive per mouse individual using the IGS locus
+overall_perc_inf,"overall percentage of ticks found to be positive per mouse individual. If a tick was found to be positive for one locus but not the other, the tick was determined to be infected"
+notes,Notes pertaining to the processing of ticks in order to determine infection status

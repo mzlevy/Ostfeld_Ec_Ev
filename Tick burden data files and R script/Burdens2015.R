@@ -17,7 +17,7 @@ rm(list=ls())
 library("ggplot2")
 
 # Reset to desired working directory
-setwd("~/Ostfeld_et_al_2018_Ecology_and_Evolution/Tick burden data files and R script")
+setwd("~/Ostfeld_Ec_Ev/Tick burden data files and R script")
 
 
 

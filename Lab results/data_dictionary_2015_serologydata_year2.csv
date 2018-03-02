@@ -1,0 +1,38 @@
+Label,Meaning
+tag,Mouse Tag number
+site,Field Site
+date_elisa,date ELISA was performed
+run_id,"because multiple ELISA were performed on the same day, this provides identification for which plate each sample belongs to since the dates are the same for multiple plates"
+elisa_well,Well in the 96-well plate that this sample was in when ELISA was performed
+vac_type,Vaccine Type
+Vac_status,Vaccine status (0= PreVac; 1=After first booster; 2=After second booster; 3=After third booster)
+date_blood,Date of blood taken
+date_int_vac,Date of initial injection
+date_sec_vac,Date of 1st booster (or second vaccination)
+date_third_vac,Date of 2nd booster (or third vaccination)
+date_forth_vac,Date of 3rd booster (or 4th vaccination)
+duplicate_num,Each sample was performed in duplicate
+end_abs_read,20min absorbance read or end absorbance read
+max_slope,Max slope of reads
+max_slope_3up,Max slope (>3min)
+read_zero,read from the plate reader at minute 0. Reads were taken every minute for 20 minutes with shaking of the 96-well plate in between reads
+read_one,read from plate reader at minute 1
+read_two,read from plate reader at minute 2
+read_three,read from plate reader at minute 3
+read_four,read from plate reader at minute 4
+read_five,read from plate reader at minute 5
+read_six,read from plate reader at minute 6
+read_seven,read from plate reader at minute 7
+read_eight,read from plate reader at minute 8
+read_nine,read from plate reader at minute 9
+read_ten,read from plate reader at minute 10
+read_eleven,read from plate reader at minute 11
+read_twelve,read from plate reader at minute 12
+read_thirteen,read from plate reader at minute 13
+read_fourteen,read from plate reader at minute 14
+read_fifteen,read from plate reader at minute 15
+read_sixteen,read from plate reader at minute 16
+read_seventeen,read from plate reader at minute 17
+read_eighteen,read from plate reader at minute 18
+read_nineteen,read from plate reader at minute 19
+read_twenty,read from plate reader at minute 20

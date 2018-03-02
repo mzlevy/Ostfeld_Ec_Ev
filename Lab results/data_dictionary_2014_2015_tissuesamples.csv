@@ -1,0 +1,10 @@
+Label,meaning
+tag,mouse tag number
+site,site mouse captured
+date_coll,date tissue sample collected
+vac_status,vaccine status
+vac_type,vaccine type
+inf_status_c,infection status using the OspC locus. If PCR positive then recorded as 1; if PCR negative then recorded as 0
+inf_status_igs,infection status using the IGS locus. If PCR positive then recorded as 1; if PCR negative then recorded as 0
+overall_status,"overall infection status of individual. If a mouse is determined positive for one locus, then it is considered infected"
+notes,notes pertaining to the processing of tissue samples in order to determine infection status
