@@ -13,8 +13,7 @@ rm(list=ls())
 getwd()
 
 # Reset to desired working directory
-setwd("~/Vaccine")          #for Mike
-setwd("c:/Users/Felicia Keesing/Documents/Data & Figures/Vaccination")
+setwd("~/Ostfeld_et_al_2018_Ecology_and_Evolution/")          
 
 # Find where R is currently working
 getwd()
@@ -382,5 +381,7 @@ GLM3<- glm(TotalDistS~Treatment, data=gd4Paired, family = "poisson")
 summary(GLM3)
 GLM4<- glm(TotalDistS~Treatment + Site, data=gd4Paired, family = "poisson")
 summary(GLM4)
+
+
 
 

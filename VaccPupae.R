@@ -27,12 +27,8 @@ library("MASS")
 getwd()
 
 # Reset to desired working directory
-setwd("~/Vaccine/gypsy moth data files")
+setwd("~/Ostfeld_et_al_2018_Ecology_and_Evolution/gypsy moth data files")
 
-setwd("c:/Users/Felicia Keesing/Documents/Data & Figures/Vaccination")
-
-# Find where R is currently working
-getwd()
 
 
 library("ggplot2")
@@ -96,31 +92,10 @@ sd.Man <- tapply(p.grid$PropEaten, list(p.grid$Treatment), sd)
 n.Man <- tapply(p.grid$PropEaten, list(p.grid$Treatment), length)
 # Calculate the standard error 
 se.Man <- sd.Man/sqrt(n.Man)
-par(mfrow = c(1,2))
-# Now make the barplot
-# beside=TRUE makes it a grouped barplot
-mids<- barplot(mean.Man,
-               xlab = "Grid treatment", 
-               ylab = "Mean proportion of pupae eaten",
-               ylim = c(0,1),
-               # col=colors,
-               beside=TRUE)
-# use arrows to put error bars on the plot
-arrows(mids, mean.Man - se.Man, mids, mean.Man+se.Man, code = 3, angle = 90, length = 0.1)
-text(mids, .1, paste ("n = ", n.Man), cex=.7, col="white")
 
-#plot the proportion eaten versus # of animals on that grid
-plot(p.dens$PropEaten ~ p.dens$MNA, xlim=c(0,85), ylim=c(0,.9),
-     ylab="Proportion Pupae Eaten", xlab="MNA")
-#abline(lm(p.dens$PropEaten ~ p.dens$MNA))
-anova(lm(p.dens$PropEaten ~ p.dens$MNA))
-text(p.dens$MNA, p.dens$PropEaten-.05,labels=p.dens$Site)
 
 # DATA ANALYSIS HERE
-# Need to incorporate density of mice on plots as covariate
-# Need to incorporate paired design of grids 
 
-glm(PropEaten ~ MNA + )
 
 #number remaining
 #paired t-test
@@ -134,44 +109,21 @@ GLM3<-glm(NumRemaining~ Treatment.x + Location.x + MNA, poisson(link = "log"), d
 #offset
 p.dens$offset<-1:6*0+log(81)
 GLM3o<-glm(NumRemaining~ Treatment.x + Location.x + MNA, poisson(link = "log"), offset(offset), data=p.dens)
-GLM3o2<-glm(NumRemaining/log(81)~ Treatment.x + Location.x + MNA, poisson(link = "log"),data=p.dens)
-GLM3o3<-glm(NumRemaining/81~ Treatment.x + Location.x + MNA, poisson(link = "log"),data=p.dens)
-
-
+#GLM3o2<-glm(NumRemaining/log(81)~ Treatment.x + Location.x + MNA, poisson(link = "log"),data=p.dens)
+#GLM3o3<-glm(NumRemaining/81~ Treatment.x + Location.x + MNA, poisson(link = "log"),data=p.dens)
 
 #overdispersed
 GLM3b<-glm(NumRemaining~ Treatment.x + Location.x + MNA, quasipoisson(link = "log"), data=p.dens)
-
-
-GLM3nb<-glm.nb(NumRemaining~ Treatment.x + Location.x + MNA, data=p.dens)
-
-
-
+#GLM3nb<-glm.nb(NumRemaining~ Treatment.x + Location.x + MNA, data=p.dens)
 GLM4<-glm(NumRemaining~ Treatment.x  + MNA, poisson(link = "log"),  data=p.dens)
 
 #Gaussian data
 GLM5<-glm(NumRemaining~ Treatment.x + Location.x + MNA, data=p.dens)
-
 ANOVA1<-anova(lm(NumRemaining ~ MNA+ Treatment.x + Location.x, data=p.dens))
-
-
-#logit
-GLM6<-glm(PropEaten ~ Treatment.x + Location.x + MNA, family=binomial, data=p.dens)
-
 
 #random effect on Location
 GLMER1<-glmer(NumRemaining~ Treatment.x  + MNA +(1|Location.x), poisson(link = "log"),  data=p.dens)
 
-
-
-
-
-shapiro.test(p.grid$PropEaten)
-hist(p.grid$PropEaten)
-
-# analysis of covariance with density, but loses paired design
-n <- aov(p.dens$PropEaten ~ p.dens$Treatment.x+p.dens$MNA)
-plot(lm(p.grid$PropEaten ~ p.grid$Treatment))
 
 
 ################################################################
@@ -206,19 +158,6 @@ sd.Man <- tapply(p.sign.grid$PropEaten, list(p.sign.grid$Treatment), sd)
 n.Man <- tapply(p.sign.grid$PropEaten, list(p.sign.grid$Treatment), length)
 # Calculate the standard error 
 se.Man <- sd.Man/sqrt(n.Man)
-par(mfrow = c(1,2))
-# Now make the barplot
-# beside=TRUE makes it a grouped barplot
-mids<- barplot(mean.Man,
-               xlab = "Grid treatment", 
-               ylab = "Mean proportion of pupae eaten",
-               ylim = c(0,1),
-               # col=colors,
-               beside=TRUE)
-# use arrows to put error bars on the plot
-arrows(mids, mean.Man - se.Man, mids, mean.Man+se.Man, code = 3, angle = 90, length = 0.1)
-text(mids, .1, paste ("n = ", n.Man), cex=.7, col="white")
-
 
 
 # THIS SECTION TREATS EACH GRID AS UNIT OF REPLICATION, but only for pupae with rodent sign
@@ -230,49 +169,10 @@ sd.Man <- tapply(p.sign.grid$NumWithSign, list(p.sign.grid$Treatment), sd)
 n.Man <- tapply(p.sign.grid$NumWithSign, list(p.sign.grid$Treatment), length)
 # Calculate the standard error 
 se.Man <- sd.Man/sqrt(n.Man)
-par(mfrow = c(1,2))
-# Now make the barplot
-# beside=TRUE makes it a grouped barplot
-mids<- barplot(mean.Man,
-               xlab = "Grid treatment", 
-               ylab = "Mean number of pupae with rodent sign",
-               ylim = c(0,70),
-               # col=colors,
-               beside=TRUE)
-# use arrows to put error bars on the plot
-arrows(mids, mean.Man - se.Man, mids, mean.Man+se.Man, code = 3, angle = 90, length = 0.1)
-text(mids, 5, paste ("n = ", n.Man), cex=.7, col="white")
 
 
-#plot the proportion eaten versus # of animals on that grid
-plot(p.sign.dens$NumWithSign ~ p.sign.dens$MNA, xlim=c(0,85), ylim=c(0,85),
-     ylab="Number of pupae with rodent sign", xlab="MNA", pch=16)
-text(p.sign.dens$MNA, p.sign.dens$NumWithSign-5,labels=p.sign.dens$Site)
-#abline(lm(p.dens$PropEaten ~ p.dens$MNA))
+
 anova(lm(p.dens$PropEaten ~ p.dens$MNA))
-
-# DATA ANALYSIS HERE
-# Need to incorporate density of mice on plots as covariate
-# Need to incorporate paired design of grids 
-
-
-
-
-
-
-
-
-
-
-
-
-
-shapiro.test(p.grid$PropEaten)
-hist(p.grid$PropEaten)
-
-# analysis of covariance with density, but loses paired design
-n <- aov(p.dens$PropEaten ~ p.dens$Treatment.x+p.dens$MNA)
-plot(lm(p.grid$PropEaten ~ p.grid$Treatment))
 
 
 
